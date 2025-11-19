@@ -1,7 +1,13 @@
-/* CSS Básico */
+:root {
+    --rosa-principal: #ff69b4;
+    --background-principal: #f7e6e6;
+    --texto-titulos: #8b4513;
+    --hover-rosa: #e65a9e;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7e6e6; /* Exemplo de um rosa bebê */
+    background-color: var(--background-principal);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +26,7 @@ body {
 }
 
 h2 {
-    color: #8b4513; /* Marrom chocolate */
+    color: var(--texto-titulos);
     margin-bottom: 25px;
 }
 
@@ -46,7 +52,7 @@ h2 {
 }
 
 .btn-login {
-    background-color: #ff69b4; /* Rosa choque (morango) */
+    background-color: var(--rosa-principal);
     color: white;
     padding: 12px 20px;
     border: none;
@@ -59,7 +65,7 @@ h2 {
 }
 
 .btn-login:hover {
-    background-color: #e65a9e;
+    background-color: var(--hover-rosa);
 }
 
 .register-prompt {
@@ -70,18 +76,17 @@ h2 {
 }
 
 .register-link {
-    color: #ff69b4; /* Cor de destaque para o link */
+    color: var(--rosa-principal);
     font-weight: bold;
     text-decoration: none;
-    display: block; /* Garante que o link fique em sua própria linha */
+    display: block;
     margin-top: 5px;
 }
 
 /* REGISTRO */
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7e6e6; /* Rosa bebê */
+    background-color: var(--background-principal);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,12 +100,12 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 450px; /* Um pouco mais largo que o login */
+    max-width: 450px;
     text-align: center;
 }
 
 h2 {
-    color: #8b4513; /* Marrom chocolate */
+    color: var(--texto-titulos);
     margin-bottom: 25px;
 }
 
@@ -116,17 +121,8 @@ h2 {
     color: #333;
 }
 
-/* Estilos para todos os inputs de texto/email/senha */
-.input-group input:not([type="checkbox"]) { 
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-}
-
 .btn-register {
-    background-color: #ff69b4; /* Rosa choque (morango) */
+    background-color: var(--rosa-principal);
     color: white;
     padding: 12px 20px;
     border: none;
@@ -139,14 +135,14 @@ h2 {
 }
 
 .btn-register:hover {
-    background-color: #e65a9e;
+    background-color: var(--hover-rosa);
 }
 
 .login-link {
     display: block;
     margin-top: 15px;
     font-size: 14px;
-    color: #8b4513;
+    color: var(--texto-titulos);
     text-decoration: none;
 }
 
@@ -154,11 +150,11 @@ h2 {
 /* --- Header --- */
 .main-header {
     background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra um pouco mais forte para destacar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
-    position: fixed; /* ALTERADO: Fixa o cabeçalho na tela */
+    position: fixed;
     top: 0;
-    left: 0; /* Garante que ele comece no canto esquerdo */
+    left: 0;
     z-index: 1001;
 }
 
@@ -172,14 +168,14 @@ h2 {
 }
 
 .logo {
-    color: #ff69b4; /* Cor da marca */
+    color: var(--rosa-principal);
     font-size: 24px;
     margin: 0;
-    font-family: 'Georgia', serif; /* Fonte que sugere algo artesanal */
+    font-family: 'Georgia', serif;
 }
 
 .main-nav a {
-    color: #8b4513; /* Marrom */
+    color: var(--texto-titulos);
     text-decoration: none;
     margin-left: 20px;
     padding: 5px 10px;
@@ -188,15 +184,14 @@ h2 {
 }
 
 .main-nav a:hover, .main-nav a.active {
-    color: #ff69b4;
-    border-bottom: 2px solid #ff69b4;
+    color: var(--rosa-principal);
+    border-bottom: 2px solid var(--rosa-principal);
 }
 
 .logout-link {
-    color: #888 !important; /* Cor mais neutra para 'Sair' */
+    color: #888 !important;
 }
 
-/* --- Estilos do Ícone Hamburger --- */
 .hamburger-menu {
     display: none;
     cursor: pointer;
@@ -206,50 +201,49 @@ h2 {
 .hamburger-menu .bar {
     width: 25px;
     height: 3px;
-    background-color: #8b4513;
+    background-color: var(--texto-titulos);
     margin: 5px 0;
     transition: 0.4s;
 }
 
 @media (max-width: 768px) {
-    /* 1. Mostra o ícone e esconde o menu */
     .hamburger-menu {
-        display: block; /* Mostra o ícone hamburger no mobile */
+        display: block;
     }
     
     .main-nav {
-        /* Esconde a navegação principal (menu) por padrão */
-        display: none; 
+        max-height: 0;
         position: absolute;
-        top: 60px; /* Abaixo do header fixo (ajuste se seu header for mais alto) */
+        top: 65px;
         left: 0;
         width: 100%;
-        background-color: #fcfcfc; /* Fundo leve para o menu aberto */
+        background-color: #fcfcfc;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         z-index: 999;
         text-align: center;
-        padding-bottom: 10px;
+        padding-bottom: 0px;
+
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease-in-out;
     }
     
-    /* 2. Estiliza os links do menu aberto */
     .main-nav a {
-        display: block; /* Cada link ocupa sua própria linha */
+        display: block;
         margin: 0;
         padding: 12px 0;
         border-bottom: 1px solid #eee;
     }
 
     .main-nav a:hover, .main-nav a.active {
-        background-color: #f7e6e6; /* Cor de fundo suave ao passar o mouse */
+        background-color: var(--background-principal);
         border-bottom: none;
     }
     
-    /* 3. CLASSE ATIVA (Mostra o menu quando o JS adiciona esta classe) */
     .main-nav.active {
-        display: block;
+        max-height: 300px;
     }
     
-    /* 4. Animação do Hamburger (transforma em um "X") */
     .hamburger-menu.open .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -275,19 +269,17 @@ h2 {
 
 .catalog-main h2 {
     text-align: center;
-    color: #8b4513;
+    color: var(--texto-titulos);
     margin-bottom: 30px;
     font-size: 30px;
 }
 
-/* Layout de Grade (Grid) */
 .product-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;;
     gap: 30px;
 }
 
-/* Card de Produto */
 .product-card {
     background-color: white;
     border-radius: 12px;
@@ -313,7 +305,7 @@ h2 {
 }
 
 .product-info h3 {
-    color: #8b4513;
+    color: var(--texto-titulos);
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 20px;
@@ -323,19 +315,19 @@ h2 {
     color: #666;
     font-size: 14px;
     margin-bottom: 15px;
-    min-height: 40px; /* Para manter o card uniforme */
+    min-height: 40px;
 }
 
 .product-price {
     display: block;
     font-size: 24px;
     font-weight: bold;
-    color: #ff69b4; /* Preço em destaque */
+    color: var(--rosa-principal);
     margin-bottom: 15px;
 }
 
 .btn-add-cart {
-    background-color: #ff69b4;
+    background-color: var(--rosa-principal);
     color: white;
     padding: 10px 15px;
     border: none;
@@ -347,13 +339,11 @@ h2 {
 }
 
 .btn-add-cart:hover {
-    background-color: #e65a9e;
+    background-color: var(--hover-rosa);
 }
 
 @media (max-width: 768px) {
-    /* Em telas menores que 768px (tablets e celulares), altera o layout */
     .product-grid {
-        /* Altera para 1 coluna apenas para melhor visualização em celular */
         grid-template-columns: 1fr; 
     }
     

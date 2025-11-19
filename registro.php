@@ -1,3 +1,18 @@
+<?php 
+
+    include_once('conexao.php');
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $telefone = $_POST['phone'];
+        $senha = $_POST['password'];
+
+        $sql = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo, email, telefone, senha) VALUES ('$nome', '$email', '$telefone', '$senha')");
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,10 +26,10 @@
         
         <h2>Crie sua Conta e Comece a Pedir!</h2>
 
-        <form action="/register" method="POST">
+        <form action="registro.php" method="POST">
             <div class="input-group">
                 <label for="name">Nome Completo</label>
-                <input type="text" id="name" name="name" class="inputUser" placeholder="Seu Nome e Sobrenome" required>
+                <input type="text" id="name" name="nome" class="inputUser" placeholder="Seu Nome e Sobrenome" required>
             </div>
 
             <div class="input-group">
@@ -24,7 +39,7 @@
             
             <div class="input-group">
                 <label for="phone">Telefone / WhatsApp</label>
-                <input type="tel" id="phone" name="phone" class="inputUser" placeholder="(99) 99999-9999" required>
+                <input type="tel" id="phone" name="phone" class="inputUser" maxlength="11" placeholder="(99) 99999-9999" required>
             </div>
             
             <div class="input-group">
@@ -37,9 +52,10 @@
                 <input type="password" id="confirm-password" name="confirm-password" class="inputUser" placeholder="Repita a senha" required>
             </div>
 
-            <button type="submit" class="btn-register">Criar Conta</button>
+            <!-- <button type="submit" class="btn-register">Criar Conta</button> -->
+            <input type="submit" class="btn-register" name="submit" value="Criar Conta">
 
-            <a href="index.php" class="login-link">Já tem uma conta? Faça Login</a>
+            <a href="login.php" class="login-link">Já tem uma conta? Faça Login</a>
         </form>
     </div>
 
