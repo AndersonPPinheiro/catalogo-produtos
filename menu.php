@@ -34,6 +34,9 @@
                 <a href="menu.php" class="active">Produtos</a>
                 <?php if ($usuario_logado): ?>
                     <a href="minha_conta.php">Minha Conta</a>
+                <?php if ($_SESSION['cargo'] == 'gerente'): ?>
+                    <a href="admin/admin_usuarios.php">Admin</a>
+                <?php endif; ?>
                     <a href="deslogar.php" class="logout-link">Sair</a>
                 <?php else: ?>
                     <a href="login.php" class="login-link">Entrar</a>

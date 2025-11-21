@@ -81,7 +81,8 @@
 
             <!-- <button type="submit" class="btn-register">Criar Conta</button> -->
             <input type="submit" class="btn-register" name="submit" value="Criar Conta">
-
+            
+            <br><br>
             <a href="login.php" class="login-link">Já tem uma conta? Faça Login</a>
         </form>
     </div>
