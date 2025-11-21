@@ -1,7 +1,7 @@
 :root {
     --rosa-principal: #ff69b4;
     --background-principal: #f7e6e6;
-    --texto-titulos: #8b4513;
+    --marrom: #8b4513;
     --hover-rosa: #e65a9e;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 h2 {
-    color: var(--texto-titulos);
+    color: var(--marrom);
     margin-bottom: 25px;
 }
 
@@ -84,16 +84,6 @@ h2 {
 }
 
 /* REGISTRO */
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--background-principal);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
 .register-container {
     background-color: white;
     padding: 40px;
@@ -102,11 +92,6 @@ body {
     width: 100%;
     max-width: 450px;
     text-align: center;
-}
-
-h2 {
-    color: var(--texto-titulos);
-    margin-bottom: 25px;
 }
 
 .input-group {
@@ -139,11 +124,58 @@ h2 {
 }
 
 .login-link {
-    display: block;
-    margin-top: 15px;
-    font-size: 14px;
-    color: var(--texto-titulos);
+    color: var(--marrom);
     text-decoration: none;
+}
+
+/* Botão flutuante do carrinho */
+.floating-cart {
+    position: fixed;
+    top: 120px; 
+    right: 50px;
+    background-color: var(--rosa-principal);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    animation: cartBounce 1.4s infinite;
+}
+
+.floating-cart:hover {
+    transform: scale(1.1);
+    background-color: var(--hover-rosa);
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Badge (quantidade) */
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: var(--marrom);
+    color: white;
+    font-size: 13px;
+    padding: 4px 7px;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Animação de bounce */
+@keyframes cartBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 /* CATALOGO PRINCIPAL */
@@ -161,7 +193,7 @@ h2 {
 .header-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 15px 20px;
+    padding: 30px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -174,8 +206,14 @@ h2 {
     font-family: 'Georgia', serif;
 }
 
+.main-nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
 .main-nav a {
-    color: var(--texto-titulos);
+    color: var(--marrom);
     text-decoration: none;
     margin-left: 20px;
     padding: 5px 10px;
@@ -201,7 +239,7 @@ h2 {
 .hamburger-menu .bar {
     width: 25px;
     height: 3px;
-    background-color: var(--texto-titulos);
+    background-color: var(--marrom);
     margin: 5px 0;
     transition: 0.4s;
 }
@@ -214,13 +252,14 @@ h2 {
     .main-nav {
         max-height: 0;
         position: absolute;
-        top: 65px;
+        top: 110px;
         left: 0;
         width: 100%;
         background-color: #fcfcfc;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         z-index: 999;
         text-align: center;
+        align-items: center;
         padding-bottom: 0px;
 
         overflow: hidden;
@@ -230,6 +269,9 @@ h2 {
     
     .main-nav a {
         display: block;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
         margin: 0;
         padding: 12px 0;
         border-bottom: 1px solid #eee;
@@ -241,6 +283,8 @@ h2 {
     }
     
     .main-nav.active {
+        display: flex;
+        align-items: center;
         max-height: 300px;
     }
     
@@ -254,6 +298,12 @@ h2 {
 
     .hamburger-menu.open .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .floating-cart {
+        top: 140px; 
+        right: 30px;
+        z-index: 996;
     }
 }
 /* ------ */
@@ -269,7 +319,7 @@ h2 {
 
 .catalog-main h2 {
     text-align: center;
-    color: var(--texto-titulos);
+    color: var(--marrom);
     margin-bottom: 30px;
     font-size: 30px;
 }
@@ -305,7 +355,7 @@ h2 {
 }
 
 .product-info h3 {
-    color: var(--texto-titulos);
+    color: var(--marrom);
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 20px;
