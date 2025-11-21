@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Nov-2025 às 21:45
+-- Tempo de geração: 21/11/2025 às 15:02
 -- Versão do servidor: 10.4.32-MariaDB
--- versão do PHP: 8.2.12
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `itens_pedido`
+-- Estrutura para tabela `itens_pedido`
 --
 
 CREATE TABLE `itens_pedido` (
@@ -38,7 +38,7 @@ CREATE TABLE `itens_pedido` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pedidos`
+-- Estrutura para tabela `pedidos`
 --
 
 CREATE TABLE `pedidos` (
@@ -53,7 +53,7 @@ CREATE TABLE `pedidos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura para tabela `produtos`
 --
 
 CREATE TABLE `produtos` (
@@ -66,10 +66,18 @@ CREATE TABLE `produtos` (
   `situacao` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `nome`, `descricao`, `preco`, `imagem_url`, `categoria`, `situacao`) VALUES
+(1, 'Bolo de Chocolate', 'Bolinho porrada de Chocolate Potente.', 15.99, 'img/bolo_chocolate.jpg', 'Bolo', 1),
+(3, 'Torta de Limão', 'Tortinha Potente', 11.99, 'img/torta_limao_merengue.jpg', 'Torta', 1);
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -78,22 +86,24 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `telefone` varchar(15) NOT NULL,
   `senha` varchar(255) NOT NULL,
+  `cargo` varchar(20) DEFAULT 'cliente',
   `data_registro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `telefone`, `senha`, `data_registro`) VALUES
-(13, 'Anderson Pinheiro', 'anderson@gmail.com', '91981506918', '123', '2025-11-19 16:55:05');
+INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `telefone`, `senha`, `cargo`, `data_registro`) VALUES
+(15, 'Anderson Pereira Pinheiro', 'anderson@gmail.com', '91981506918', '$2y$10$wWeW6jt6YTFCOzgrsFKUvuVszNCEzveant5wXvTe0boFlNtkAjHNa', 'gerente', '2025-11-20 11:25:27'),
+(16, 'Amanda Luiza', 'amanda@gmail.com', '91980142935', '$2y$10$MHY7QlOZYmPYv6kRXJfFIuwtbGUFHfSNirOKb9Eh3wJ99gB4pd9Py', 'cliente', '2025-11-20 13:50:10');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `itens_pedido`
+-- Índices de tabela `itens_pedido`
 --
 ALTER TABLE `itens_pedido`
   ADD PRIMARY KEY (`id`),
@@ -101,27 +111,27 @@ ALTER TABLE `itens_pedido`
   ADD KEY `id_produto` (`id_produto`);
 
 --
--- Índices para tabela `pedidos`
+-- Índices de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Índices para tabela `produtos`
+-- Índices de tabela `produtos`
 --
 ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -140,27 +150,27 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `itens_pedido`
+-- Restrições para tabelas `itens_pedido`
 --
 ALTER TABLE `itens_pedido`
   ADD CONSTRAINT `itens_pedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id`),
   ADD CONSTRAINT `itens_pedido_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id`);
 
 --
--- Limitadores para a tabela `pedidos`
+-- Restrições para tabelas `pedidos`
 --
 ALTER TABLE `pedidos`
   ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);

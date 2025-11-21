@@ -1,16 +1,32 @@
 <?php 
-
     include_once('conexao.php');
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $telefone = $_POST['phone'];
-        $senha = $_POST['password'];
+        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $telefone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
+        $senha = $_POST['senha'];
+        $confirmar_senha = $_POST['confirm-senha'];
 
-        $sql = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo, email, telefone, senha) VALUES ('$nome', '$email', '$telefone', '$senha')");
+        if ($senha !== $confirmar_senha) {
+            header('Location: registro.php?erro=senhadiferente');
+            exit();
+        }
+
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+        $statement = $conexao -> prepare("INSERT INTO usuarios(nome_completo, email, telefone, senha) VALUES (?, ?, ?, ?)");
+        $statement -> bind_param("ssss", $nome, $email, $telefone, $senha_hash);
+        if ($statement -> execute()) {
+            header('Location: login.php?cadastro=sucesso');
+        }
+        else {
+            header('Location: registro.php?erro=emailexistente');
+        }
+
+        $statement -> close();
+        $conexao -> close();
+        exit();
     }
-    
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +41,17 @@
     <div class="register-container">
         
         <h2>Crie sua Conta e Comece a Pedir!</h2>
+
+        <?php 
+            if (isset($_GET['erro'])) {
+                if ($_GET['erro'] == 'senhadiferente') {
+                    echo '<p style="color: red; font-weight: bold;">Senhas Não Coincidem!';
+                }
+                elseif ($_GET['erro'] == 'emailexistente') {
+                    echo '<p style="color: red; font-weight: bold;">Email já Cadastrado!';
+                }
+            }
+        ?>
 
         <form action="registro.php" method="POST">
             <div class="input-group">
@@ -44,12 +71,12 @@
             
             <div class="input-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" class="inputUser" placeholder="Crie uma senha forte" required>
+                <input type="password" id="password" name="senha" class="inputUser" placeholder="Crie uma senha forte" required>
             </div>
 
             <div class="input-group">
                 <label for="confirm-password">Confirmar Senha</label>
-                <input type="password" id="confirm-password" name="confirm-password" class="inputUser" placeholder="Repita a senha" required>
+                <input type="password" id="confirm-password" name="confirm-senha" class="inputUser" placeholder="Repita a senha" required>
             </div>
 
             <!-- <button type="submit" class="btn-register">Criar Conta</button> -->

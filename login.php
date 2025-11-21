@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="css\style.css">
 </head>
 <body>
-
     <div class="login-container">
         <h2>Entrar</h2>
+
+        <?php 
+            if (isset($_GET['cadastro']) && $_GET['cadastro'] == 'sucesso') {
+                echo '<p style="color: green; font-weight: bold;">Cadastro realizado com sucesso!</p>';
+            }
+            elseif (isset($_GET['erro']) && $_GET['erro'] == 'credenciais') {
+                echo '<p style="color: red; font-weight: bold;">E-mail ou senha incorretos.</p>';
+            }
+        ?>
 
         <form action="validar_login.php" method="POST">
             <div class="input-group">
@@ -19,7 +27,7 @@
             
             <div class="input-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" class="inputUser" placeholder="••••••••" required>
+                <input type="password" id="password" name="senha" class="inputUser" placeholder="••••••••" required>
             </div>
 
             <!-- <button type="submit" class="btn-login">Entrar</button> -->
@@ -33,6 +41,5 @@
             </div>
         </form>
     </div>
-
 </body>
 </html>
