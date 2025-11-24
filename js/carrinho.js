@@ -1,7 +1,3 @@
-// ===============================
-// ABRIR / FECHAR O CARRINHO
-// ===============================
-
 // Abre o carrinho
 document.querySelector('.floating-cart').addEventListener('click', () => {
     const overlay = document.getElementById('cart-overlay');
@@ -31,11 +27,6 @@ function fechar_carrinho() {
     modal.setAttribute('aria-hidden', 'true');
 }
 
-
-
-// ===============================
-// CARREGAR CARRINHO (listar.php)
-// ===============================
 function carregar_carrinho() {
     fetch("carrinho/listar.php")
         .then(r => r.json())
@@ -46,11 +37,6 @@ function carregar_carrinho() {
         .catch(err => console.error("Erro ao carregar carrinho:", err));
 }
 
-
-
-// ===============================
-// ATUALIZAR DOM
-// ===============================
 function atualizar_carrinhoDOM(data) {
     const itemsDIV = document.getElementById('cart-items');
     const totalSpan = document.getElementById('cart-total');
@@ -84,11 +70,6 @@ function atualizar_carrinhoDOM(data) {
     totalSpan.textContent = "R$ " + data.total;
 }
 
-
-
-// ===============================
-// ADICIONAR ITEM
-// ===============================
 function adicionar_carrinho(id) {
     fetch(`carrinho/adicionar.php?id=${id}`)
         .then(r => r.json())
@@ -98,11 +79,6 @@ function adicionar_carrinho(id) {
         .catch(err => console.error("Erro ao adicionar item:", err));
 }
 
-
-
-// ===============================
-// ALTERAR QUANTIDADE
-// ===============================
 function alterarQtd(id, qtd) {
     fetch(`carrinho/atualizar_qtd.php?id=${id}&qtd=${qtd}`)
         .then(r => r.json())
@@ -113,11 +89,6 @@ function alterarQtd(id, qtd) {
         .catch(err => console.error("Erro ao alterar quantidade:", err));
 }
 
-
-
-// ===============================
-// REMOVER ITEM
-// ===============================
 function removerItem(id) {
     fetch(`carrinho/remover.php?id=${id}`)
         .then(r => r.json())
@@ -128,18 +99,12 @@ function removerItem(id) {
         .catch(err => console.error("Erro ao remover item:", err));
 }
 
-
-
-// ===============================
-// ATUALIZAR BADGE
-// ===============================
 function atualizar_badge(qtd) {
     document.querySelector('.cart-badge').textContent = qtd;
 }
 
+function ir_para_checkout() {
+    window.location.href = "checkout/checkout.php";
+}
 
-
-// ===============================
-// CARREGAR BADGE E CARRINHO AO INICIAR
-// ===============================
 carregar_carrinho();

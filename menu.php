@@ -54,7 +54,6 @@ $result = $conexao->query($sql);
             </svg>
         </div>
 
-        <!-- Badge com quantidade -->
         <span class="cart-badge" id="cart-badge">0</span>
     </a>
 
@@ -69,7 +68,6 @@ $result = $conexao->query($sql);
         </div>
 
         <div id="cart-items" class="cart-items">
-            <!-- Itens serão inseridos aqui via JS -->
             <p class="no-items">Nenhum item no carrinho</p>
         </div>
 
@@ -77,6 +75,8 @@ $result = $conexao->query($sql);
             <span class="total-label">Total:</span>
             <span class="total-price" id="cart-total">R$ 0,00</span>
         </div>
+
+        <button class="btn-checkout" onclick="ir_para_checkout()">Finalizar Pedido</button>
     </div>
 
     <main class="catalog-main">
@@ -107,19 +107,17 @@ $result = $conexao->query($sql);
 
     <script src="js/nav_hamburger.js"></script>
     <script src="js/carrinho.js"></script>
-
-    <!-- Conecta os botões "Adicionar" ao handler (garante carregamento após carrinho.js) -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll(".btn-add-cart").forEach(btn => {
-            btn.addEventListener("click", function() {
-                const produtoId = this.getAttribute("data-id");
-                if (produtoId) {
-                    adicionar_carrinho(produtoId);
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll(".btn-add-cart").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    const produtoId = this.getAttribute("data-id");
+                    if (produtoId) {
+                        adicionar_carrinho(produtoId);
+                    }
+                });
             });
         });
-    });
     </script>
 </body>
 </html>
